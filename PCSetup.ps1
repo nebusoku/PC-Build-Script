@@ -4,9 +4,9 @@ function SetPCName {
     # In our MSP we designate all systems in the format devicetype-companyname-assetid for example DT-MSP-000001 keep in mind that this is the maximum length Windows allows for system names
     # This function creates VisualBasic pop-up prompts which ask for this information to be input. You can hange these as needed to suite your MSP
     Add-Type -AssemblyName Microsoft.VisualBasic
-    $DeviceType = [Microsoft.VisualBasic.Interaction]::InputBox('Enter Device Type (LT or DT)', 'Device Type')
-    $CompanyName = [Microsoft.VisualBasic.Interaction]::InputBox('Enter Company Initials (Max 4 letters)', 'Company Initials')
-    $AssetID = [Microsoft.VisualBasic.Interaction]::InputBox('Enter a Asset ID', 'Asset ID')
+    $DeviceType = [Microsoft.VisualBasic.Interaction]::InputBox('Enter GDS)', 'Device Type')
+    $CompanyName = [Microsoft.VisualBasic.Interaction]::InputBox('Enter Model Number)', 'Company Initials')
+    $AssetID = [Microsoft.VisualBasic.Interaction]::InputBox('Enter a Last 4 of the Serial Number', 'Asset ID')
     Write-Output "The asset ID is $AssetID"
     Write-Output "$DeviceType-$CompanyName-$AssetID"
     Rename-Computer -NewName "$DeviceType-$CompanyName-$AssetID"
