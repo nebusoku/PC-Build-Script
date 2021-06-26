@@ -27,6 +27,7 @@ function InstallApps {
     choco install adobereader 7zip microsoft-edge -y
     # Install Office365 applications. This takes a while so is done separately. You can change the options here by following the instructions here: https://chocolatey.org/packages/microsoft-office-deployment
     choco install microsoft-office-deployment --params="'/Channel:Monthly /Language:en-us /64bit /Product:O365BusinessRetail /Exclude:Lync,Groove'" -y
+    #choco install microsoft-office-deployment --params="'/Channel:Monthly /Language:en-us /Product:O365BusinessRetail /Exclude:Lync,Groove'" -y
 }
 
 function ReclaimWindows10 {
@@ -634,11 +635,17 @@ function RestartPC{
     Restart-Computer
 }
 
+function Branding{
+Invoke-WebRequest -Uri "https://downloads.pacit.tech/intechlogo.bmp" -OutFile "c:\windows\system32\intechlogo.bmp"
+New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation" -Name "Manufacturer" -Value "Intech I.T. Solutions Ltd"  -PropertyType "String" -Force
+}
+
 InstallChoco
 InstallApps
-ReclaimWindows10
-LayoutDesign
-ApplyDefaultApps
+#ReclaimWindows10
+#LayoutDesign
+#ApplyDefaultApps
 IntechPower
-SetPCName
+Branding
+#SetPCName
 RestartPC
